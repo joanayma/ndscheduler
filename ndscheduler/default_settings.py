@@ -31,8 +31,8 @@ TORNADO_MAX_WORKERS = 8
 #
 # ApScheduler settings
 #
-THREAD_POOL_SIZE = 4
-JOB_MAX_INSTANCES = 3
+THREAD_POOL_SIZE = 20
+JOB_MAX_INSTANCES = 10
 JOB_COALESCE = True
 TIMEZONE = 'UTC'
 
@@ -54,10 +54,10 @@ AUDIT_LOGS_TABLENAME = 'scheduler_jobauditlog'
 
 # SQLite
 #
-DATABASE_CLASS = 'ndscheduler.core.datastore.providers.sqlite.DatastoreSqlite'
-DATABASE_CONFIG_DICT = {
-    'file_path': 'datastore.db'
-}
+#DATABASE_CLASS = 'ndscheduler.core.datastore.providers.sqlite.DatastoreSqlite'
+#DATABASE_CONFIG_DICT = {
+#    'file_path': 'datastore.db'
+#}
 
 # Postgres
 #
@@ -73,14 +73,14 @@ DATABASE_CONFIG_DICT = {
 
 # MySQL
 #
-# DATABASE_CLASS = 'ndscheduler.core.datastore.providers.mysql.DatastoreMysql'
-# DATABASE_CONFIG_DICT = {
-#     'user': 'username',
-#     'password': '',
-#     'hostname': 'localhost',
-#     'port': 3306,
-#     'database': 'scheduler'
-# }
+DATABASE_CLASS = 'ndscheduler.core.datastore.providers.mysql.DatastoreMysql'
+DATABASE_CONFIG_DICT = {
+    'user': 'username',
+    'password': '',
+    'hostname': 'localhost',
+    'port': 3306,
+    'database': 'scheduler'
+}
 
 # ndschedule is based on apscheduler. Here we can customize the apscheduler's main scheduler class
 # Please see ndscheduler/core/scheduler/base.py
@@ -91,6 +91,13 @@ SCHEDULER_CLASS = 'ndscheduler.core.scheduler.base.SingletonScheduler'
 #
 logging.getLogger().setLevel(logging.INFO)
 
+
+# To enable basic authentication, define the 'user' and 'pass'
+BASIC_AUTH_CONFIG = {
+    'user': '',
+    'pass': '',
+    'realm': 'Fawu Scheduler'
+}
 
 # Packages that contains job classes, e.g., simple_scheduler.jobs
 JOB_CLASS_PACKAGES = []
