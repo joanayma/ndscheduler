@@ -33,19 +33,34 @@ define(['config',
      * @return {string} html string for job name of this execution.
      */
     getNameHTMLString: function() {
-      var jobId = this.get('job').job_id,
-          executionId = this.get('execution_id');
-
-      var jobName = '';
       try {
-        jobName = this.get('job')['name'];
+        var jobId = this.get('job').job_id
       } catch (e) {
-        jobName = '<span class="failed-color">Unknown Job</span>';
+	      var jobId = false;
       }
 
-      return '<a href="/#executions/' + executionId +
-          '"><i class="fa fa-link fa-lg"></i></a> <a href="/#jobs/' + jobId +
-          '">' + jobName + '</a>';
+      var executionId = this.get('execution_id');
+      if (jobId){
+          var jobName = '';
+          try {
+            jobName = this.get('job')['name'];
+          } catch (e) {
+            jobName = '<span class="failed-color">Unknown Job</span>';
+          }
+
+          return '<a href="/#executions/' + executionId +
+              '"><i class="fa fa-link fa-lg"></i></a> <a href="/#jobs/' + jobId +
+              '">' + jobName + '</a>';
+      }else{
+          var jobName = '';
+          try {
+            jobName = this.get('job')['name'];
+          } catch (e) {
+            jobName = '<span class="failed-color">Unknown Job</span>';
+          }
+
+          return '<a href="#"><i class="fa fa-link fa-lg"></i></a> <a href="#">' + jobName + '</a>';
+      };
     },
 
     /**
