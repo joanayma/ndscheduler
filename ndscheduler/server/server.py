@@ -70,14 +70,14 @@ class SchedulerServer:
         # Setup server
         URLS = [
             # Index page
-            (r'/', require_basic_auth(index.Handler, settings.BASIC_AUTH_CONFIG)),
+            (r'/ndscheduler/', require_basic_auth(index.Handler, settings.BASIC_AUTH_CONFIG)),
 
             # APIs
-            (r'/api/%s/jobs' % self.VERSION, jobs.Handler),
-            (r'/api/%s/jobs/(.*)' % self.VERSION, jobs.Handler),
-            (r'/api/%s/executions' % self.VERSION, executions.Handler),
-            (r'/api/%s/executions/(.*)' % self.VERSION, executions.Handler),
-            (r'/api/%s/logs' % self.VERSION, audit_logs.Handler),
+            (r'/ndscheduler/api/%s/jobs' % self.VERSION, jobs.Handler),
+            (r'/ndscheduler/api/%s/jobs/(.*)' % self.VERSION, jobs.Handler),
+            (r'/ndscheduler/api/%s/executions' % self.VERSION, executions.Handler),
+            (r'/ndscheduler/api/%s/executions/(.*)' % self.VERSION, executions.Handler),
+            (r'/ndscheduler/api/%s/logs' % self.VERSION, audit_logs.Handler),
         ]
         self.application = tornado.web.Application(URLS, **self.tornado_settings)
 
